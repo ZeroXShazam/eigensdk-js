@@ -7,12 +7,12 @@ async function createAccount() {
   try {
     const web3 = new Web3(new Web3.providers.HttpProvider(providerUrl));
 
-    // Generate a random private key (not recommended for production)
-    const privateKey = await web3.eth.accounts.create();
-	console.log(privateKey)
-    const address = web3.eth.accounts.privateKeyToAccount(privateKey).address;
+    // Generate a random account
+    const account = await web3.eth.accounts.create();
+    console.log(account); // This will show the full account object
+    const address = web3.eth.accounts.privateKeyToAccount(account.privateKey).address;
 
-    console.log('Private Key:', privateKey);
+    console.log('Private Key:', account.privateKey);
     console.log('Address:', address);
   } catch (error) {
     console.error('Error creating account:', error);
@@ -20,5 +20,5 @@ async function createAccount() {
 }
 
 test("========== sample ==========", async () => {
-	await createAccount();
+  await createAccount();
 })
