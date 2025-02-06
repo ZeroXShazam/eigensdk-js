@@ -70,20 +70,20 @@ export function g1PointToArgs(p: G1Point): {X: string, Y: string} {
 	}
 }
 
-export function g2PointToArgs(p: G2Point): {X: [string, string], Y: [string, string]} {
+export function g2PointToArgs(p: G2Point): {X: string[], Y: string[]} {
 	return {
 		X: [
-			"0x" + p.getX().get_b().getStr(16).padStart(64, '0'),
 			"0x" + p.getX().get_a().getStr(16).padStart(64, '0'),
+			"0x" + p.getX().get_b().getStr(16).padStart(64, '0'),
 		],
 		Y: [
-			"0x" + p.getY().get_b().getStr(16).padStart(64, '0'),
 			"0x" + p.getY().get_a().getStr(16).padStart(64, '0'),
+			"0x" + p.getY().get_b().getStr(16).padStart(64, '0'),
 		]
 	}
 }
 
-export function g2PointFromArgs(args:{X:[string, string], Y: [string, string]}): G2Point {
+export function g2PointFromArgs(args:{X:string[], Y: string[]}): G2Point {
 	return new G2Point(
 		BigInt(args.X[0]),
 		BigInt(args.X[1]),
